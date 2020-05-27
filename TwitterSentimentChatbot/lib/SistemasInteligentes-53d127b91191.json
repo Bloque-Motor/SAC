@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "sublime-index-277217",
+  "private_key_id": "53d127b9119184c90347afbb29ddc9a295071281",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDPtxHl08bGQSts\nNpcVmmHFWB8mFAKwBrYhfTjFefDu4zPJMTpLjKybwKqQI+FEdnBaB/Mz8YDMoWNy\n/QljYH56kvGnbPnIgvZKG8NHbuV4UkXcdBX9x5L7tUyVUCXIAHA4qK+7ri7VVZM/\ni6j8T0qT7flrj5AK5qVbS6l/JDJb72kp+nMvd7hgXQulC301BDtl9D/1++1Czelx\n/efyTSMpOnMTxriEjSEZmkiIbF9xPFni8xUttcNmjSMiZTndu9sT/VAHKU73i7Rx\nAVuP8XpI+JAJKjgnsUSalKR3d6HE7WF5363OlX+ipZ6W8QyccBAgQBGrwaDqYt8Z\nZFoNO8NRAgMBAAECggEABPOFAgKnP+Ou63t95Jg/bUEDbZC/q2bejavup/DnHgel\nDO4/KKy90tDf8/OB/7P3y8KZoM7oekA81tFqqU90FluFNn+n0Nhz0tqIcC4H2uNR\nql6LRWdN5PF6dcrxOpwtkKEvPrDZSZEqk1LCvIBum3n6Rn7HoQXkUkm6fKcOCwBO\nA+VgtbOJVw/6ZS6BjoicE1qiljAajcDSvR4inx1Bvix0zKq3N+phuc9w3alprfLi\nXnHe/8Tnk7UM6Q6oSFbljj+LuzEtFsUq86iB1xAIxbZPrJkuubq/Zvwywcstr1bq\n+XSbbEVKq7tNFDWBHUC5gWntnP4CyaOSDKfbuoseYQKBgQDvegHdaua/6qangVjY\nRLDpdhJhJ115+/UWJ1bOTMPXwlN+H0LSWR6zUDk1FdniNi6GfC/OVZ4xp3CW1aly\nHranPoa01Bo69ysQcog/PSJRibkJK6bPrUMcX+KHrM4v7bs7tPa5ToroOuGvnsdi\nyt/DxD6/4GRpGmP5KQ4rYpcI4QKBgQDeDAtKR/4surEVHciqpbcxX47L60aVy5/k\nIQTbjzVFjg49UMXq68K33dtBVekHn5mZIbZpY1aX53b8jjCI/mEE5slVqwyn6mrd\n49731HFjuKtXzsHseMFHzu7UICmwWumKmjfO3DSC8BoUZGW18asMlHheX9p+bWX0\nG4MCnHPYcQKBgQCR05X3IvXIwDcjoVxctdeVEtU2XCZL9eXUy7fMgGpxpF/7WUXz\nmVlcj+mGLfw0CBJkypLB7tkaG4AwGYPJfnJzfVvCGbavWXvb1CKrf6q6REdtEivO\nIw/O44SqYcxc20M8pIHpba6go9pyexmnSyrfp00ewqHibrOaMinyuWKHgQKBgQCc\nYcchzYpJXkKRKKTG6mcWssITA+R2Yy58sHSHXVibX+zPai+5v8knTWy5mxO/drvq\niT+7AWdfHHlEba/pC56woQly+EC1kfcpxu6lhE1HeivSb59MN8+ID0lMxEoYFi8c\nmnhri9K/1PHJItwvQ8C/32DWtpNfLxT60tV15VIBQQKBgB0yEdzQLJPoDxIhUUrl\ncNfbd7k0JCK7t0n2QUGrElqNVc3afzHzfRYZF0B1aNRQfR4kk9FYIZ7Zvw8S34t+\nUihRlW4MB/E3xW4HiHm/egGC7Gagl+ky9fzo5DilLBYMojI55n+m6ExG2YFJgPMr\nj0LVI5w3FLatSKDuEw5azFzo\n-----END PRIVATE KEY-----\n",
+  "client_email": "sentiment-analysis-twitter@sublime-index-277217.iam.gserviceaccount.com",
+  "client_id": "112325463312117774513",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/sentiment-analysis-twitter%40sublime-index-277217.iam.gserviceaccount.com"
+}
