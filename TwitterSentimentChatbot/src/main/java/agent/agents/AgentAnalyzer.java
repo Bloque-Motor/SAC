@@ -1,28 +1,20 @@
 package agent.agents;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.time.LocalTime;
-
-import com.google.cloud.language.v1.Document;
-import com.google.cloud.language.v1.LanguageServiceClient;
-import com.google.cloud.language.v1.Sentiment;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.cloud.language.v1.Document.Type;
-
 import agent.launcher.AgentBase;
 import agent.launcher.AgentModel;
+import com.google.cloud.language.v1.Document;
+import com.google.cloud.language.v1.Document.Type;
+import com.google.cloud.language.v1.LanguageServiceClient;
+import com.google.cloud.language.v1.Sentiment;
+import com.google.gson.*;
 import jade.core.AID;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
 import utils.Sentiments;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.time.LocalTime;
 
 public class AgentAnalyzer extends AgentBase{
 	
