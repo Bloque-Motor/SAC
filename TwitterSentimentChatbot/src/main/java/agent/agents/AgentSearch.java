@@ -22,12 +22,9 @@ public class AgentSearch extends AgentBase {
 	private static final String CONSUMER_KEY = "7fyoyu9SvOU5k0oXslUJTqoaY";
     private static final String CONSUMER_SECRET = "UY15eLIjf0jz7ic0yQ0iD9977Xuot9ucN6M4q42hWkY2f5Hdtu";
     private static final String ACCESS_TOKEN = "125712653-TM2NhIfL6kSDbn9v4ZXKJXMsuynpGBKKCEfu3ffz";
-    private static final String ACESS_TOKEN_SECRET = "sVvSNufgeb13zaCXnmiCYTWNVP3wdzGjyPwT38NRJVXsz";
+    private static final String ACCESS_TOKEN_SECRET = "sVvSNufgeb13zaCXnmiCYTWNVP3wdzGjyPwT38NRJVXsz";
 	
-	static String hashTag;
-	static long chatId;
-	static long sinceId = 0;
-	static int numberOfTweets = 0;
+	static int numberOfTweets = 14;
 
 	protected void setup(){
 		super.setup();
@@ -43,15 +40,12 @@ public class AgentSearch extends AgentBase {
 			ACLMessage input = receive();
 			if(input!=null) {
 				String [] arguments = input.getContent().split("/");
-				chatId = Long.parseLong(arguments[0]);
-				hashTag = arguments[1];
-				System.out.println("Recibidoo! " + hashTag);
-				numberOfTweets = 5; 
+				long chatId = Long.parseLong(arguments[0]);
+				String hashTag = arguments[1];
 				String send = TweetRecopiler(hashTag, numberOfTweets).toString();
-				System.out.println(send);
 				ACLMessage message = new ACLMessage(ACLMessage.REQUEST);
 				message.setSender(getAID());
-				AID id = new AID("Analyzer@192.168.1.106:1200/JADE", AID.ISGUID);
+				AID id = new AID("Analyzer@192.168.1.55:1200/JADE", AID.ISGUID);
 				message.addReceiver(id);
 				message.setContent(chatId + "///" + send);
 				send(message);
@@ -73,12 +67,12 @@ public class AgentSearch extends AgentBase {
 		.setOAuthConsumerKey(CONSUMER_KEY)
 		.setOAuthConsumerSecret(CONSUMER_SECRET)
 		.setOAuthAccessToken(ACCESS_TOKEN)
-		.setOAuthAccessTokenSecret(ACESS_TOKEN_SECRET);
+		.setOAuthAccessTokenSecret(ACCESS_TOKEN_SECRET);
 
 		TwitterFactory tf = new TwitterFactory(cb.build());
 		Twitter twitter = tf.getInstance();
 
-		Query queryMax = new Query(hashTag);
+		Query queryMax = new Query(hashtag);
 		JsonObject output = getTweets(queryMax, twitter, numOfTweets);
 		return output;
 	}

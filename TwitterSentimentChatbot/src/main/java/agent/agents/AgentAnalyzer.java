@@ -6,7 +6,10 @@ import com.google.cloud.language.v1.Document;
 import com.google.cloud.language.v1.Document.Type;
 import com.google.cloud.language.v1.LanguageServiceClient;
 import com.google.cloud.language.v1.Sentiment;
-import com.google.gson.*;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import jade.core.AID;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
@@ -14,7 +17,12 @@ import utils.Sentiments;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import static java.lang.Math.pow;
+import static java.lang.Math.sqrt;
 
 public class AgentAnalyzer extends AgentBase{
 	
@@ -36,36 +44,63 @@ public class AgentAnalyzer extends AgentBase{
 
 		@Override
 		public void action() {
+			ArrayList<Sentiments> tuples = new ArrayList<>();
+			HashMap<Sentiments.SentimentName, Integer> modeMap = new HashMap<>();
+			double totalMagnitude = 0.0;
 			ACLMessage message = receive();
 			if(message!=null) {
 				String [] arguments = message.getContent().split("///");
 				long chatId = Long.parseLong(arguments[0]);
 				JsonObject output = finalJSON(arguments[1]);
-				
-				LocalTime l = LocalTime.now();
-				Gson gson = new GsonBuilder().setPrettyPrinting().create();
-				String result = (gson.toJson(output));
+
 				String pretty = "";
 				JsonArray array = output.getAsJsonArray("Tweets");
-				System.out.println("Array" + array.toString());
 				for (int i=0; i< array.size(); i++) {
 					JsonObject obj = array.get(i).getAsJsonObject();
-					String id = obj.get("Id").toString();
-					String nickname = obj.get("Nickname").toString();
-					String text = obj.get("Text").toString();
 					String scr = obj.get("score").toString();
 					String mgn = obj.get("magnitude").toString();
-					pretty = pretty + "Id: " + id + "\n";
-					pretty = pretty + "Nickname: " + nickname + "\n";
-					pretty = pretty + "Text: " + text + "\n";
-					pretty = pretty + "Score: " + scr + "\n";
-					pretty = pretty + "Magnitude: " + mgn + "\n";
-					pretty = pretty + "*************" + "\n";
+					float score = Float.parseFloat(scr);
+					float magnitude = Float.parseFloat(mgn);
+					totalMagnitude += magnitude;
+					Sentiments tuple = new Sentiments(score, magnitude);
+					tuples.add(tuple);
 				}
-				//Files.write(Paths.get("Exports\\sentiments"+l.getHour()+l.getMinute()+l.getSecond()+".json"), gson.toJson(output).getBytes());
+				double cumulative = 0.0;
+				for (Sentiments tuple: tuples){
+					cumulative += tuple.getScore() * tuple.getMagnitude();
+				}
+				double average = 0.0;
+				if (totalMagnitude > 0) average = cumulative/totalMagnitude;
+				cumulative = 0.0;
+				for (Sentiments tuple: tuples){
+					cumulative = pow(tuple.getScore() - average, 2);
+					Sentiments.SentimentName sentimentName = Sentiments.classify(tuple.getScore());
+					Integer instances = modeMap.get(sentimentName);
+					if (instances == null){
+						instances = 0;
+					}
+					instances += 1;
+					modeMap.put(sentimentName, instances);
+				}
+				double stddev  = sqrt(cumulative / tuples.size());
+
+				Integer record = 0;
+				Sentiments.SentimentName mode = Sentiments.SentimentName.NEUTRAL;
+				for (Map.Entry<Sentiments.SentimentName, Integer> entry : modeMap.entrySet())
+				{
+					if(entry.getValue() >= record){
+						mode = entry.getKey();
+						record = entry.getValue();
+					}
+				}
+				pretty = "Number of tweets analyzed: " + tuples.size();
+				pretty += "\nThe average sentiment for your search is: " + Sentiments.classify(average).toString();
+				pretty += "\nThe confidence for this result is: " + (Math.round((1 - stddev) * 10000.00) / 100.00) + "%";
+				pretty += "\nThe sentiment with the most appearances is: " + mode.toString() + " with " + record + " appearances.";
+
 				ACLMessage analysis = new ACLMessage(ACLMessage.REQUEST);
 				analysis.setSender(getAID());
-				AID id = new AID("Output@192.168.1.106:1200/JADE", AID.ISGUID);
+				AID id = new AID("Output@192.168.1.55:1200/JADE", AID.ISGUID);
 				analysis.addReceiver(id);
 				analysis.setContent(chatId + "///" + pretty);
 				send(analysis);

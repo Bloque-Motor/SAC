@@ -36,7 +36,7 @@ public class TelegramBot extends TelegramLongPollingBot{
 		// Get id from user chat:
 		final long chatId = update.getMessage().getChatId();
 		// Creates a new message:
-		SendMessage message = new SendMessage().setChatId(chatId).setText("¡Welcome to TwitterSentimentChatbot!");
+		SendMessage message = new SendMessage().setChatId(chatId).setText("ï¿½Welcome to TwitterSentimentChatbot!");
 		Message msg = update.getMessage();
 
 		switch(messageTextReceived) {
@@ -53,7 +53,7 @@ public class TelegramBot extends TelegramLongPollingBot{
 		default:
 			if (analyzing) {
 				pending.put(chatId, messageTextReceived);
-				message = new SendMessage().setChatId(chatId).setText("Analyzing...");
+				message = new SendMessage().setChatId(chatId).setText("Analyzing keyword. This could take a few moments...");
 				analyzing = false;
 				break;
 			} else {
@@ -78,7 +78,7 @@ public class TelegramBot extends TelegramLongPollingBot{
 	}
 
 	/**
-	 * Método para seleccionar opciones dentro de un teclado
+	 * Mï¿½todo para seleccionar opciones dentro de un teclado
 	 */
 	private static ReplyKeyboardMarkup getSettingsKeyboard(String firstOption, String secondOption) {
 		ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
