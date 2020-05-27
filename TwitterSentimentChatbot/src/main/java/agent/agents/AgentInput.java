@@ -51,7 +51,7 @@ public class AgentInput extends AgentBase {
 				
 				ACLMessage hashtag = new ACLMessage(ACLMessage.REQUEST);
 				hashtag.setSender(getAID());
-				AID id = new AID("Search@192.168.1.106:1200/JADE", AID.ISGUID);
+				AID id = new AID("Search@192.168.1.55:1200/JADE", AID.ISGUID);
 				hashtag.addReceiver(id);
 				String toSend = chatId + "/" + keyword;
 				hashtag.setContent(toSend);
