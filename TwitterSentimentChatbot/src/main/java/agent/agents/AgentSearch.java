@@ -19,10 +19,10 @@ import agent.launcher.*;
 public class AgentSearch extends AgentBase {
 	private static final long serialVersionUID = 1L;
 	public static final String NICKNAME = "Search";
-	private static final String CONSUMER_KEY = "7fyoyu9SvOU5k0oXslUJTqoaY";
-    private static final String CONSUMER_SECRET = "UY15eLIjf0jz7ic0yQ0iD9977Xuot9ucN6M4q42hWkY2f5Hdtu";
-    private static final String ACCESS_TOKEN = "125712653-TM2NhIfL6kSDbn9v4ZXKJXMsuynpGBKKCEfu3ffz";
-    private static final String ACCESS_TOKEN_SECRET = "sVvSNufgeb13zaCXnmiCYTWNVP3wdzGjyPwT38NRJVXsz";
+	private static final String CONSUMER_KEY = "";
+    private static final String CONSUMER_SECRET = "";
+    private static final String ACCESS_TOKEN = "";
+    private static final String ACCESS_TOKEN_SECRET = "";
 	
 	static int numberOfTweets = 14;
 
@@ -78,7 +78,7 @@ public class AgentSearch extends AgentBase {
 	}
 
 	/**
-	 * Recoge los tweets en base a la información dada
+	 * Recoge los tweets en base a la informaciï¿½n dada
 	 * @param query
 	 * @param twitter
 	 * @param numberOfTweets
